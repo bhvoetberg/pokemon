@@ -1,7 +1,23 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
-const Pokemon = ({pokemonData}) => {
-    // const [pokemonData, setPokemonData] = useState('');
+const Pokemon = ({pokemon}) => {
+    const [pokemonData, setPokemonData] = useState('');
+    const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon/'+pokemon);
+
+    useEffect(() => {
+        async function getPokemonData() {
+            try {
+                const result = await axios.get(endPoint);
+                setPokemonData(result.data);
+                console.log(result);
+            } catch (e) {
+                console.error(e);
+            }
+        }
+        getPokemonData();
+        console.log(pokemonData);
+    }, [])
 
     return (
         <div>

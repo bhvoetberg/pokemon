@@ -5,25 +5,29 @@ import Pokemon from "./components/Pokemon";
 
 
 function App() {
-    const [pokemonData, setPokemonData] = useState('');
-    const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon/spearow');
+    const [pokemonList, setPokemonList] = useState('');
+    const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon');
 
     useEffect(() => {
-        async function getData() {
+        async function getPokemonList() {
             try {
                 const result = await axios.get(endPoint);
-                setPokemonData(result.data);
+                setPokemonList(result.data.results);
+                console.log(result);
             } catch (e) {
                 console.error(e);
             }
         }
-        getData();
-        console.log(pokemonData);
+        getPokemonList();
+        console.log(pokemonList);
     }, [])
 
     return (
         <div>
-            <Pokemon pokemonData={pokemonData}/>
+            {pokemonList &&
+                pokemonList.map((pokemon) => {
+                    return <Pokemon pokemon={pokemon.name}/>
+            })}
         </div>
     );
 }
