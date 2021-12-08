@@ -1,0 +1,19 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+div {
+    background: greenyellow;
+    display: grid;
+
+    grid-auto-columns: 1fr 1fr 1fr;
+
+}
+
+.pokemonList {
+    background: green;
+    gap: 1rem;
+
+}

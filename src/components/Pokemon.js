@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import './Pokemon.css'
+
 
 const Pokemon = ({pokemon}) => {
     const [pokemonData, setPokemonData] = useState('');
@@ -22,7 +24,7 @@ const Pokemon = ({pokemon}) => {
     return (
         <div>
             {pokemonData && <>
-                <h2>{pokemonData.name}</h2>
+                <h2>{pokemonData.name.toUpperCase()}</h2>
                 <img src={pokemonData.sprites.front_default} alt={pokemonData.name}/>
                 <h3><strong>Moves: </strong> {pokemonData.moves.length}</h3>
                 <h3><strong>Weight: </strong> {pokemonData.weight}</h3>

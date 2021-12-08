@@ -23,7 +23,7 @@ function App() {
     }, [])
 
     return (
-        <div>
+        <div className="pokemonList">
             {pokemonList &&
                 pokemonList.map((pokemon) => {
                     return <Pokemon pokemon={pokemon.name}/>
