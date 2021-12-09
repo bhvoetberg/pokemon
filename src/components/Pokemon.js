@@ -5,34 +5,36 @@ import './Pokemon.css'
 
 const Pokemon = ({pokemon}) => {
     const [pokemonData, setPokemonData] = useState('');
-    const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon/'+pokemon);
+    const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon/' + pokemon);
 
     useEffect(() => {
         async function getPokemonData() {
             try {
                 const result = await axios.get(endPoint);
                 setPokemonData(result.data);
-                console.log(result);
             } catch (e) {
                 console.error(e);
             }
         }
+
         getPokemonData();
         console.log(pokemonData);
     }, [])
 
+
     return (
-        <div>
+        <div className="pokemon-card">
             {pokemonData && <>
                 <h2>{pokemonData.name.toUpperCase()}</h2>
                 <img src={pokemonData.sprites.front_default} alt={pokemonData.name}/>
                 <h3><strong>Moves: </strong> {pokemonData.moves.length}</h3>
                 <h3><strong>Weight: </strong> {pokemonData.weight}</h3>
                 <h3><strong>Abilities: </strong></h3>
-
-                {pokemonData.abilities.map((pokemon) => {
-                    return <li> {pokemon.ability.name}</li>
-                })}
+                <ul>
+                    {pokemonData.abilities.map((pokemon, index) => {
+                        return <li key={index}> {pokemon.ability.name}</li>
+                    })}
+                </ul>
             </>
             }
         </div>

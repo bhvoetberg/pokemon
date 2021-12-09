@@ -4,16 +4,28 @@
     box-sizing: border-box;
 }
 
-div {
-    background: greenyellow;
+h1{
+    text-align: center;
+}
+.pokemon-list {
     display: grid;
-
-    grid-auto-columns: 1fr 1fr 1fr;
-
+    gap: 1rem;
+    grid-template-columns: repeat(5, 200px);
+    justify-content: center;
 }
 
-.pokemonList {
-    background: green;
+nav{
+    display: grid;
     gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    margin: 2rem;
+}
 
+button{
+    background: rgb(18, 81, 154);
+    color: white;
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 6px;
 }
