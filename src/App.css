@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: rgb(242, 189, 0);
+    font-family: "Arial", sans-serif;
+}
+
+:disabled{
+    background: rgb(158, 158, 157);
+}
+
+h1, h3{
+    text-align: center;
+}
+.pokemon-list {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(5, 200px);
+    justify-content: center;
+}
+
+nav{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    justify-content: center;
+    margin: 2rem;
+}
+
+button{
+    background: rgb(18, 81, 154);
+    color: white;
+    padding: 1rem;
+    width: 8rem;
+    border-radius: 6px;
+}
