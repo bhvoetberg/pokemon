@@ -1,0 +1,28 @@
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: white;
+
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    width: border-box;
+    justify-content: space-evenly;
+}
+
+li {
+    list-style-type: none;
+    background: rgb(231, 231, 231);
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+h3 {
+    margin: 0px;
+    margin-top: 6px;
+}
+

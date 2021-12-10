@@ -1,44 +1,44 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import './App.css';
-import Pokemon from "./components/Pokemon";
-
+import PokemonCard from "./components/PokemonCard";
 
 function App() {
     const [pokemonData, setPokemonData] = useState('');
     const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function getPokemonList() {
+        async function getPokemonData() {
+            setLoading(true);
             try {
                 const result = await axios.get(endPoint);
                 setPokemonData(result.data);
-                // setEndPoint(result.data.next);
-                console.log(result);
-                // console.log(endPoint);
             } catch (e) {
                 console.error(e);
             }
+            setLoading(false);
         }
-        getPokemonList();
+        getPokemonData();
+
 
     }, [endPoint]);
-
 
     return (
         <>
             <h1>PoKeMoN!</h1>
-            <p>Endpoint = {endPoint}</p>
-            <p>NextEndpoint = {pokemonData.next}</p>
 
             <nav>
-                <button type="button" name="back" onClick={() => setEndPoint(pokemonData.previous)}>Vorige</button>
-                <button type="button" name="forward" onClick={() => setEndPoint(pokemonData.next)}>Volgende</button>
+                <button type="button" disabled={!pokemonData.previous} name="back" onClick={() => setEndPoint(pokemonData.previous)}>Vorige</button>
+                <button type="button" disabled={!pokemonData.next} name="forward" onClick={() => setEndPoint(pokemonData.next)}>Volgende</button>
             </nav>
+
+            {loading && <h3><em>We komen er aan, even geduld! ...</em></h3>}
+
             <div className="pokemon-list">
                 {pokemonData &&
                     pokemonData.results.map((pokemon) => {
-                        return <Pokemon pokemon={pokemon.name}/>
+                        return <PokemonCard key={pokemon.name} endPoint={pokemon.url}/>
                     })}
             </div>
         </>

@@ -4,7 +4,17 @@
     box-sizing: border-box;
 }
 
-h1{
+body {
+    margin: 0;
+    background: rgb(242, 189, 0);
+    font-family: "Arial", sans-serif;
+}
+
+:disabled{
+    background: rgb(158, 158, 157);
+}
+
+h1, h3{
     text-align: center;
 }
 .pokemon-list {
