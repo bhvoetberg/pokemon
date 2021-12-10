@@ -5,6 +5,8 @@ import './PokemonCard.css'
 
 const PokemonCard = ({ endPoint }) => {
     const [pokemonDetails, setPokemonDetails] = useState('');
+    const [error, setError] = useState(false);
+
 
     useEffect(() => {
         async function getPokemonData() {
@@ -13,6 +15,7 @@ const PokemonCard = ({ endPoint }) => {
                 setPokemonDetails(result.data);
             } catch (e) {
                 console.error(e);
+                setError(true);
             }
         }
         getPokemonData();
@@ -21,6 +24,7 @@ const PokemonCard = ({ endPoint }) => {
 
     return (
         <div className="pokemon-card">
+            {error && <h2>Er is iets foutgegaan.</h2>}
             {pokemonDetails && <>
                 <h2>{pokemonDetails.name.toUpperCase()}</h2>
                 <img src={pokemonDetails.sprites.front_default} alt={pokemonDetails.name}/>

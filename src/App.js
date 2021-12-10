@@ -7,6 +7,7 @@ function App() {
     const [pokemonData, setPokemonData] = useState('');
     const [endPoint, setEndPoint] = useState('https://pokeapi.co/api/v2/pokemon');
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         async function getPokemonData() {
@@ -16,6 +17,7 @@ function App() {
                 setPokemonData(result.data);
             } catch (e) {
                 console.error(e);
+                setError(true);
             }
             setLoading(false);
         }
@@ -31,9 +33,11 @@ function App() {
             <nav>
                 <button type="button" disabled={!pokemonData.previous} name="back" onClick={() => setEndPoint(pokemonData.previous)}>Vorige</button>
                 <button type="button" disabled={!pokemonData.next} name="forward" onClick={() => setEndPoint(pokemonData.next)}>Volgende</button>
+
             </nav>
 
-            {loading && <h3><em>We komen er aan, even geduld! ...</em></h3>}
+            {loading && <h3><em>We komen er aan, even geduld ...</em></h3>}
+            {error && <h2>Er is iets foutgegaan.</h2>}
 
             <div className="pokemon-list">
                 {pokemonData &&
